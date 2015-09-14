@@ -183,6 +183,20 @@ describe('Biskviit Unit Tests', function() {
             expect(biskviit.match(cookie, 'http://example.com/bef/')).to.be.false;
         });
 
+        it('should check if a cookie matches particular domain and path', function() {
+            var cookie = {
+                name: 'zzz',
+                value: 'abc',
+                path: '/def',
+                expires: new Date(Date.now() + 10000),
+                domain: 'example.com',
+                secure: false,
+                httponly: false
+            };
+            expect(biskviit.match(cookie, 'http://example.com/def/')).to.be.true;
+            expect(biskviit.match(cookie, 'http://example.com/bef/')).to.be.false;
+        });
+
         it('should check if a cookie is secure', function() {
             var cookie = {
                 name: 'zzz',
@@ -312,7 +326,7 @@ describe('Biskviit Unit Tests', function() {
             // short
             biskviit.set('theme=plain', 'https://foo.com/');
             // long
-            biskviit.set('SSID=Ap4P….GTEq; Domain=foo.com; Path=/; Expires=Wed, 13 Jan 2021 22:23:01 GMT; Secure; HttpOnly', 'https://foo.com/');
+            biskviit.set('SSID=Ap4P….GTEq; Domain=foo.com; Path=/test; Expires=Wed, 13 Jan 2021 22:23:01 GMT; Secure; HttpOnly', 'https://foo.com/');
             // subdomains
             biskviit.set('SSID=Ap4P….GTEq; Domain=.foo.com; Path=/; Expires=Wed, 13 Jan 2021 22:23:01 GMT; Secure; HttpOnly', 'https://www.foo.com/');
             // invalid cors
@@ -336,7 +350,7 @@ describe('Biskviit Unit Tests', function() {
                 name: 'ssid',
                 value: 'Ap4P….GTEq',
                 domain: 'foo.com',
-                path: '/',
+                path: '/test',
                 secure: true,
                 httponly: true
             }, {
