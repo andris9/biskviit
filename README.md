@@ -1,6 +1,8 @@
 # biskviit
 Yet another node module for handling http cookies. This module parses `Set-Cookie` header, stores the data to memory and returns valid value for `Cookie` header once needed based on the stored cookie data.
 
+> **NB** Requires iojs or Node v4+ to support some ES6 features used by this module. Might work with older Node versions as well but not tested
+
 ## Usage
 
 Install from npm
