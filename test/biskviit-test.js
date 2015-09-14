@@ -334,7 +334,8 @@ describe('Biskviit Unit Tests', function() {
             biskviit.set('invalid_2=cors; domain=www.foo.com', 'https://foo.com/');
             // invalid date
             biskviit.set('invalid_3=date; Expires=zzzz', 'https://foo.com/');
-
+            // invalid tld
+            biskviit.set('invalid_4=cors; domain=.co.uk', 'https://foo.co.uk/');
             // should not be added
             biskviit.set('expired_1=date; Expires=1999-01-01 01:01:01 GMT', 'https://foo.com/');
 
@@ -374,6 +375,11 @@ describe('Biskviit Unit Tests', function() {
                 name: 'invalid_3',
                 value: 'date',
                 domain: 'foo.com',
+                path: '/'
+            }, {
+                name: 'invalid_4',
+                value: 'cors',
+                domain: 'foo.co.uk',
                 path: '/'
             }]);
         });
