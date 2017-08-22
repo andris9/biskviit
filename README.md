@@ -1,7 +1,8 @@
 # biskviit
-Yet another node module for handling http cookies. This module parses `Set-Cookie` header, stores the data to memory and returns valid value for `Cookie` header once needed based on the stored cookie data.
 
-> **NB** Requires iojs or Node v4+ to support some ES6 features used by this module. Might work with older Node versions as well but not tested
+Yet another node module for handling http cookies. This module parses `Set-Cookie` header, stores the data to memory and returns valid value for `Cookie` header based on the stored cookie data.
+
+> **NB** Requires Node.js v6+
 
 ## Usage
 
@@ -12,13 +13,13 @@ Install from npm
 Require as `Biskviit`
 
 ```javascript
-var Biskviit = require('biskviit');
+const Biskviit = require('biskviit');
 ```
 
 Create a cookie managing *biskviit* instance
 
 ```javascript
-var biskviit = new Biskviit(options);
+const biskviit = new Biskviit(options);
 ```
 
 Where
@@ -29,8 +30,8 @@ Where
 **Example**
 
 ```javascript
-var Biskviit = require('biskviit');
-var biskviit = new Biskviit({
+const Biskviit = require('biskviit');
+const biskviit = new Biskviit({
     sessionTimeout: 5 * 60 // expire cookies after 5 minutes
 });
 ```
@@ -60,7 +61,7 @@ biskviit.set('sessionToken=abc123; Expires=Wed, 09 Jun 2021 10:18:14 GMT', 'http
 To list all available cookies for a specified URL use `get`
 
 ```javascript
-var cookiesString = biskviit.get(url);
+const cookiesString = biskviit.get(url);
 ```
 
 Where
@@ -70,7 +71,7 @@ Where
 **Example**
 
 ```javascript
-var cookiesString = biskviit.get('http://example.com/');
+const cookiesString = biskviit.get('http://example.com/');
 // theme=light; sessionToken=abc123
 ```
 
@@ -79,7 +80,7 @@ var cookiesString = biskviit.get('http://example.com/');
 If you need to filter cookies as objects, use `list`
 
 ```javascript
-var cookiesString = biskviit.list(url);
+const cookiesString = biskviit.list(url);
 ```
 
 Where
@@ -89,7 +90,7 @@ Where
 **Example**
 
 ```javascript
-var cookiesString = biskviit.list('http://example.com/');
+const cookiesString = biskviit.list('http://example.com/');
 // [{key: 'theme', value: 'light', expires: ...}, {key: 'sessionToken', value: 'abc123', expires: ...}]
 ```
 
